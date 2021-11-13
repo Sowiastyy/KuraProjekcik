@@ -26,37 +26,44 @@ var s = new Screen();
 
 class Player {
     init() {
-        this.x = 1000;
-        this.y = 1000;
-        this.leng = 0;
-
+        this.x = 100;
+        this.y = 100;
+        this.xcurv = 1;
+        this.ycurv = 1;
+        this.rotCB = true;
     }
     update(){
-        console.log(this.x)
+        console.log(this.xcurv+", "+ this.ycurv);
         s.ctx.fillStyle="#F09D51";
         s.ctx.beginPath();
-        
-        s.ctx.moveTo(100+this.leng, 100-(this.leng*0.5));
+        s.ctx.arc(this.x,this.y,5,0,Math.PI*2,true);
+        s.ctx.fill();
 
-        s.ctx.lineTo(100, 100);
-        this.leng++;
+        this.x+=2*this.xcurv;
+        this.y+=2*this.ycurv;
 
-        s.ctx.stroke();
-        /* Controller
-        if(keys[87] && this.y>0){ // W
+        if(keys[65]){ // A
+            if(this.ycurv<1 && this.rotCB==false) {
+                this.ycurv+=0.1;
+            }
+            else if(this.xcurv<1 && this.rotCB==false) {
+                this.xcurv+=0.1;
+            }
+            else if(this.ycurv>-1) {
+                this.rotCB = true;
+                this.ycurv-=0.1;
+            }
+            else {
+                this.xcurv-=0.1;
+                if(this.xcurv<=-1) {
+                    this.rotCB=false;
+                }
+            }
+    
+        }
+        if(keys[68] && this.xcurv<10){ // D
+        }
 
-            this.y -= 10;
-        }
-        if(keys[83] && this.y<s.h()-100){ // S
-            this.y += 10;
-        }
-        if(keys[65] && this.x>0){ // A
-            this.x -= 10;
-        }
-        if(keys[68] && this.x<s.w()-100){ // D
-            this.x += 10;
-        }
-*/
     }
 }
 var keys =[];
