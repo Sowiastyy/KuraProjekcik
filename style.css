@@ -1,4 +1,60 @@
 body
 {
-    background: black;
+	background-image: url("leosia.jpg");
+	font-size: 300%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	text-align:center;
+    text-decoration-color: none;
+    
 }
+a
+{
+    text-decoration: none;
+
+}
+a:link {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+
+  ul
+  {
+    list-style-type: none;
+  }
+
+
+ a{
+    
+    width:400px;
+    height:30px;
+    display:block;
+    border-top:3px solid lightgray;
+    border-left:3px solid lightgray;
+
+    border-right:3px solid gray;
+    border-bottom:3px solid gray;
+    
+    background:#00ff00;
+    color:#000;
+    line-height:30px;
+    text-align:center;
+    padding:0 20px;
+    border-radius:3px;
+    padding: 12px;
+    margin-bottom: 5px;
+    }
+    
+    a:hover{
+
+        border-top:3px solid gray;
+        border-left:3px solid gray;
+    
+        border-right:3px solid lightgray;
+        border-bottom:3px solid lightgray;
+
+     cursor:pointer;
+    }
