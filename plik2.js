@@ -31,10 +31,26 @@ class Player {
         this.xcurv = -1;
         this.ycurv = -1;
         this.rotCB = false;
+
+    }
+    touchingColor (ctx,r,g,b){
+        var data = ctx.getImageData(this.x,this.y,1,1);
+        for(var i=0;i<data.length;i+=4){
+            if(
+                data[i+0]==r&&
+                data[i+1]==g&&
+                data[i+2]==b
+            ){
+                return true;
+            }
+        }
+        return false;
     }
     update(){
-        console.log(this.xcurv+", "+ this.ycurv);
+        //console.log(this.xcurv+", "+ this.ycurv);
         s.ctx.fillStyle="#F09D51";
+        var data = s.ctx.getImageData(this.x+(this.xcurv*4), this.y+(this.xcurv*4), 1, 1);
+        console.log(data.data[2]);
         s.ctx.beginPath();
         s.ctx.arc(this.x,this.y,5,0,Math.PI*2,true);
         s.ctx.fill();
@@ -78,6 +94,10 @@ class Player {
                     this.rotCB=true;
                 }
             }
+        }
+
+        if(this.touchingColor(s.ctx, 0, 0, 0)) {
+
         }
 
     }
