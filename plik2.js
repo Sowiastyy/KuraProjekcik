@@ -23,7 +23,7 @@ class Screen{
 }
 
 var s = new Screen();
-
+var s2 = new Screen();
 class Player {
     init(l, r, color, x ,y) {
         this.x = x;
@@ -35,6 +35,7 @@ class Player {
         this.r = r ;
         this.color = color;
         this.alive=true;
+        this.okres = 0;
     }
 
     update(){
@@ -42,6 +43,7 @@ class Player {
         s.ctx.fillStyle=this.color;
         var data = s.ctx.getImageData(this.x+(this.xcurv*4), this.y+(this.ycurv*4), 1, 1);
         var i = 0;
+        this.okres++;
         while(PColors[i]) {
 
             if(data.data[0]==PColors[i][0] && data.data[1] == PColors[i][1] && data.data[2]== PColors[i][2]) {
@@ -55,9 +57,16 @@ class Player {
         }
 
         if(this.alive) {
-            s.ctx.beginPath();
-            s.ctx.arc(this.x,this.y,5,0,Math.PI*2,true);
-            s.ctx.fill();
+            if(this.okres<100) {
+                s.ctx.beginPath();
+                s.ctx.arc(this.x,this.y,5,0,Math.PI*2,true);
+                s.ctx.fill();
+
+            }
+            else if(this.okres>120) {
+                this.okres=0;
+            }
+
 
 
             this.x+=2*this.xcurv;
@@ -106,11 +115,11 @@ class Player {
     }
 }
 class PowerUp {
-    init() {
-
-    }
-    update() {
-
+    init(x, y) {
+        this.x = x;
+        this.y = y; 
+        s.ctx.fillStyle="#01021A";
+        s.ctx.fillRect(this.x,this.y, 10, 10 );
     }
 }
 var keys =[];
@@ -119,12 +128,13 @@ var p2 = new Player();
 var p3 = new Player();
 var p4 = new Player();
 
-var PColors = [[252, 74, 28], [252, 237, 40], [14, 22, 255],[ 4, 255, 11, 100], [1, 2, 26],  [152, 16, 230]];
+var PColors = [[252, 74, 28], [252, 237, 40], [14, 22, 255],[ 4, 255, 11, 100], [1, 2, 26]];
 
 function load() {
     
 
     s.init(document.getElementById("gra"));
+    s2.init(document.getElementById("gra"));
     p.init(65, 68, "#FC4A1C", 200, 100);
     p2.init(37, 39, "#FCED28", 300, 200);
     p3.init(74, 76, "#04FF0B", 300, 300);
@@ -138,6 +148,7 @@ function load() {
     s.ctx.fillStyle="#01021A";
     s.ctx.fillRect(0,0, s.w(),s.h());
     s.ctx.clearRect(25, 25,s.w()-50,s.h()-50);
+
 }
 
 function update() {
@@ -149,4 +160,5 @@ function update() {
     p2.update();
     p3.update();
     p4.update();
+
 }
