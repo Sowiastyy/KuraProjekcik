@@ -135,10 +135,10 @@ function load() {
 
     s.init(document.getElementById("gra"));
     s2.init(document.getElementById("gra2"));
-    p.init(65, 68, "#FC4A1C", 200, 100);
-    p2.init(37, 39, "#FCED28", 300, 200);
-    p3.init(74, 76, "#04FF0B", 300, 300);
-    p4.init(100, 102, "#0E16FF", 400, 200);
+    p.init(65, 68, "#FC4A1C",  Math.floor((s.w()) * Math.random()), Math.floor((s.h()) * Math.random()));
+    p2.init(37, 39, "#FCED28", Math.floor((s.w()) * Math.random()), Math.floor((s.h()) * Math.random()));
+    p3.init(74, 76, "#04FF0B", Math.floor((s.w() ) * Math.random()), Math.floor((s.h()) * Math.random()));
+    p4.init(100, 102, "#0E16FF", Math.floor((s.w()) * Math.random()), Math.floor((s.h()) * Math.random()));
     document.body.addEventListener("keydown", function(e){
         keys[e.keyCode] = true;
     });
