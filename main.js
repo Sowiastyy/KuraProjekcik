@@ -34,7 +34,26 @@ class Player {
     }
     update(){
         s.ctx.fillStyle="#F09D51";
-        s.ctx.fillRect(this.x-cz/2, this.y, 100+cz/2, 100);
+      
+        s.ctx.drawImage(leosia ,this.x-cz/2, this.y, 100+cz/2, 100);
+       
+       
+       
+        if(score>150)
+        {
+            s.ctx.drawImage(chain ,this.x-cz/2, this.y+30, 100+cz/2, 100);
+        }
+
+        if(score>100)
+        {
+            s.ctx.drawImage(sword ,this.x-cz/2+50, this.y+20, 110+cz/2, 110);
+        }
+
+        if(score>50)
+        {
+            s.ctx.drawImage(helm ,this.x-cz/2-20, this.y-40, 140+cz/2, 100);
+        }
+        
         if(keys[87] && this.y>0){ // W
             this.y -= this.HowSpeedImI;
         }
@@ -112,7 +131,7 @@ class apple {
     }
 }
 function SquareCollapse(a, b) {
-    if(a.x+(a.w/2+cz/2)>b.x && a.x-(a.w/2+cz/2)<b.x && a.y+(a.h/2)>b.y && a.y-(a.h/2)<b.y) {
+    if(a.x+(a.w/2+cz/4)>b.x && a.x-(a.w/2+cz/4)<b.x && a.y+(a.h/2)>b.y && a.y-(a.h/2)<b.y) {
         return true;
     }
 }
@@ -123,8 +142,20 @@ var cz = 0;
 apples = new Image();
 apples.src = "apple_sheet.png";
 
+leosia = new Image();
+leosia.src = "young.png";
+
 cherry = new Image();
 cherry.src = "124325.png";
+
+helm = new Image();
+helm.src = "helm.png";
+
+sword = new Image();
+sword.src = "sword.png";
+
+chain= new Image();
+chain.src = "chain.png";
 
 var keys =[];
 var p = new Player();
