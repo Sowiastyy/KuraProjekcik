@@ -134,7 +134,7 @@ function load() {
     
 
     s.init(document.getElementById("gra"));
-    s2.init(document.getElementById("gra"));
+    s2.init(document.getElementById("gra2"));
     p.init(65, 68, "#FC4A1C", 200, 100);
     p2.init(37, 39, "#FCED28", 300, 200);
     p3.init(74, 76, "#04FF0B", 300, 300);
@@ -160,5 +160,5 @@ function update() {
     p2.update();
     p3.update();
     p4.update();
-
+    s2.ctx.fillRect(300, 300, 50, 50);
 }
