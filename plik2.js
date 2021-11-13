@@ -40,7 +40,7 @@ class Player {
     update(){
         //console.log(this.xcurv+", "+ this.ycurv);
         s.ctx.fillStyle=this.color;
-        var data = s.ctx.getImageData(this.x+(this.xcurv*3), this.y+(this.ycurv*3), 1, 1);
+        var data = s.ctx.getImageData(this.x+(this.xcurv*4), this.y+(this.ycurv*4), 1, 1);
         var i = 0;
         while(PColors[i]) {
 
