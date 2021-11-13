@@ -28,9 +28,9 @@ class Player {
     init() {
         this.x = 100;
         this.y = 100;
-        this.xcurv = 1;
-        this.ycurv = 1;
-        this.rotCB = true;
+        this.xcurv = -1;
+        this.ycurv = -1;
+        this.rotCB = false;
     }
     update(){
         console.log(this.xcurv+", "+ this.ycurv);
@@ -62,6 +62,22 @@ class Player {
     
         }
         if(keys[68] && this.xcurv<10){ // D
+            if(this.xcurv<1 && this.rotCB==true) {
+                this.xcurv+=0.1;
+            }
+            else if(this.ycurv<1 && this.rotCB==true) {
+                this.ycurv+=0.1;
+            }
+            else if(this.xcurv>-1) {
+                this.xcurv-=0.1;
+                this.rotCB=false;
+            }
+            else {
+                this.ycurv-=0.1;
+                if(this.ycurv<=-1) {
+                    this.rotCB=true;
+                }
+            }
         }
 
     }
