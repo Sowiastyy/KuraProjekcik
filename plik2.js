@@ -105,13 +105,21 @@ class Player {
 
     }
 }
+class PowerUp {
+    init() {
+
+    }
+    update() {
+
+    }
+}
 var keys =[];
 var p = new Player();
 var p2 = new Player();
 var p3 = new Player();
 var p4 = new Player();
 
-var PColors = [[252, 74, 28], [252, 237, 40], [14, 22, 255],[ 4, 255, 11, 100], [1, 2, 26] ];
+var PColors = [[252, 74, 28], [252, 237, 40], [14, 22, 255],[ 4, 255, 11, 100], [1, 2, 26],  [152, 16, 230]];
 
 function load() {
     
@@ -119,8 +127,8 @@ function load() {
     s.init(document.getElementById("gra"));
     p.init(65, 68, "#FC4A1C", 200, 100);
     p2.init(37, 39, "#FCED28", 300, 200);
-    p3.init(37, 39, "#04FF0B", 300, 300);
-    p4.init(37, 39, "#0E16FF", 400, 200);
+    p3.init(74, 76, "#04FF0B", 300, 300);
+    p4.init(100, 102, "#0E16FF", 400, 200);
     document.body.addEventListener("keydown", function(e){
         keys[e.keyCode] = true;
     });
