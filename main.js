@@ -69,7 +69,7 @@ class Player {
     }
 }
 
-class blasters
+class bomb
 {
     init()
     {
@@ -77,18 +77,155 @@ class blasters
         this.y = 1 + Math.floor((s.h() - 160) * Math.random());
         this.w=160;
         this.h=160;
+        this.j = 200;
+        this.i=30;
+        this.k=30;
+    }
+
+    update()
+    {
+        this.j--;
+        if(this.j<=0)
+        {
+            s.ctx.drawImage(kolo, this.x,this.y, 200, 200);
+            this.i--;
+            if(this.i<=0)
+            {
+                s.ctx.drawImage(kabum, this.x-40,this.y-40, 300, 300);
+
+                this.k--;
+                if(this.k<=0)
+                {
+                    this.init();
+                }
+
+            }
+        }
+
+        //if(p.x <=this.x )
+        
+
+    }
+}
+
+class blasters
+{
+    init(hui)
+    {
+        this.x = 1 +  Math.floor((s.w() - 160) * Math.random());
+        this.y = 1 + Math.floor((s.h() - 160) * Math.random());
+        this.w=160;
+        this.h=160;
+
+        this.tak=Math.floor((Math.random() * 260) + 140);
+        this.nie = 100;
+        this.i = 50;
+        this.dzieciak = hui;
     }
     update()
     {
-        s.ctx.drawImage(dzieciak, 1700,this.y, 200, 200);
-
-        var i=0;
-        s.ctx.fillStyle="blue";
-        s.ctx.fillRect(i,this.y+78,1700,10);
-            
-        if( this.y-23 <= p.y && this.y > p.y || this.y-27 <= p.y-100 && this.y > p.y-100)
+        this.tak--;
+        if (this.tak<0)
         {
-            console.log("yooo");
+            this.tak=0;
+        }
+
+        if(this.tak == 0)
+        {
+            s.ctx.drawImage(this.dzieciak, 1700,this.y, 200, 200);
+
+            this.i --;
+
+            if(this.i<0)
+            {
+                this.i=0;
+            }
+            if(this.i == 0)
+            {
+                var i=0;
+                s.ctx.fillStyle="blue";
+                s.ctx.fillRect(i,this.y+78,1700,10);
+                
+                    
+                if(tacz == false && this.y-23 <= p.y && this.y > p.y ||   tacz == false && this.y-27 <= p.y-100 && this.y > p.y-100 )
+                {
+                    score-=10;
+                    tacz = true;
+                }
+                this.nie--;
+                if(this.nie<0)
+                {
+                    this.nie = 0;
+                }
+                if(this.nie == 0 ) 
+                {
+                    this.init(this.dzieciak);
+                    tacz = false;
+                }
+            }
+            
+        }
+        
+        
+    }
+}
+
+class blasters1
+{
+    init(hui)
+    {
+        this.x = 1 +  Math.floor((s.w() - 160) * Math.random());
+        this.y = 1 + Math.floor((s.h() - 160) * Math.random());
+        this.w=160;
+        this.h=160;
+
+        this.tak=Math.floor((Math.random() * 260) + 140);
+        this.nie = 100;
+        this.i = 50;
+        this.dzieciak = hui;
+    }
+    update()
+    {
+        this.tak--;
+        if (this.tak<0)
+        {
+            this.tak=0;
+        }
+
+        if(this.tak == 0)
+        {
+            s.ctx.drawImage(this.dzieciak, -50,this.y, 200, 200);
+
+            this.i --;
+
+            if(this.i<0)
+            {
+                this.i=0;
+            }
+            if(this.i == 0)
+            {
+                var i=0;
+                s.ctx.fillStyle="blue";
+                s.ctx.fillRect(i+150,this.y+78,1700,10);
+                
+                    
+                if(tacz == false && this.y-23 <= p.y && this.y > p.y ||   tacz == false && this.y-27 <= p.y-100 && this.y > p.y-100 )
+                {
+                    score-=10;
+                    tacz = true;
+                }
+                this.nie--;
+                if(this.nie<0)
+                {
+                    this.nie = 0;
+                }
+                if(this.nie == 0 ) 
+                {
+                    this.init(this.dzieciak);
+                    tacz = false;
+                }
+            }
+            
         }
         
         
@@ -163,7 +300,7 @@ var score=0;
 var cz = 0;
 apples = new Image();
 apples.src = "apple_sheet.png";
-
+var tacz = false;
 leosia = new Image();
 leosia.src = "young.png";
 
@@ -182,18 +319,34 @@ chain.src = "chain.png";
 dzieciak= new Image();
 dzieciak.src = "dzieciak.png";
 
+dzieciak1= new Image();
+dzieciak1.src = "dzieciak1.png";
+
+kolo= new Image();
+kolo.src = "kolo.png";
+
+kabum= new Image();
+kabum.src = "bum.png";
+
 var keys =[];
 var p = new Player();
 var a = new apple();
 var c = new cherr();
 var b = new blasters();
+var b1 = new blasters1();
+var bum = new bomb();
+var bum1 = new bomb();
+
 
 function load() {
     s.init(document.getElementById("gra"));
     p.init();
     a.init();
     c.init();
-    b.init();
+    b.init(dzieciak);
+    b1.init(dzieciak1);
+    bum.init();
+    bum1.init();
     document.body.addEventListener("keydown", function(e){
         keys[e.keyCode] = true;
     });
@@ -210,6 +363,12 @@ function update() {
     p.update();
     c.update();
     b.update();
+    if(score>30)
+    {
+        b1.update();
+    }
+    bum.update();
+    bum1.update();
     s.ctx.fillStyle="#F06543";
     s.ctx.font = "36px Trebuchet MS";
     s.ctx.fillText(score*100, s.w()-90, 45);
