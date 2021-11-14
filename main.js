@@ -68,6 +68,32 @@ class Player {
         }
     }
 }
+
+class blasters
+{
+    init()
+    {
+        this.x = 1 +  Math.floor((s.w() - 160) * Math.random());
+        this.y = 1 + Math.floor((s.h() - 160) * Math.random());
+        this.w=160;
+        this.h=160;
+    }
+    update()
+    {
+        s.ctx.drawImage(dzieciak, 1700,this.y, 200, 200);
+
+        var i=0;
+        s.ctx.fillStyle="blue";
+        s.ctx.fillRect(i,this.y+78,1700,10);
+            
+        if( this.y-23 <= p.y && this.y > p.y || this.y-27 <= p.y-100 && this.y > p.y-100)
+        {
+            console.log("yooo");
+        }
+        
+        
+    }
+}
 class cherr
 {
     init()
@@ -105,10 +131,6 @@ class cherr
         
     }
     
-    
-    
-    
-    
 }
 class apple {
     init() {
@@ -131,7 +153,7 @@ class apple {
     }
 }
 function SquareCollapse(a, b) {
-    if(a.x+(a.w/2+cz/4)>b.x && a.x-(a.w/2+cz/4)<b.x && a.y+(a.h/2)>b.y && a.y-(a.h/2)<b.y) {
+    if(a.x+(a.w/2+cz/2)>b.x && a.x-(a.w/2)<b.x && a.y+(a.h/2)>b.y && a.y-(a.h/2)<b.y) {
         return true;
     }
 }
@@ -157,16 +179,21 @@ sword.src = "sword.png";
 chain= new Image();
 chain.src = "chain.png";
 
+dzieciak= new Image();
+dzieciak.src = "dzieciak.png";
+
 var keys =[];
 var p = new Player();
 var a = new apple();
 var c = new cherr();
+var b = new blasters();
 
 function load() {
     s.init(document.getElementById("gra"));
     p.init();
     a.init();
     c.init();
+    b.init();
     document.body.addEventListener("keydown", function(e){
         keys[e.keyCode] = true;
     });
@@ -182,6 +209,7 @@ function update() {
     a.update();
     p.update();
     c.update();
+    b.update();
     s.ctx.fillStyle="#F06543";
     s.ctx.font = "36px Trebuchet MS";
     s.ctx.fillText(score*100, s.w()-90, 45);
